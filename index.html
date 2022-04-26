@@ -1,0 +1,40 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simplex Widget</title>
+        <script>
+            window.simplexAsyncFunction = function () {
+                Simplex.init({public_key: 'pk_test_b38c36d5-7a39-4933-b642-ed6965fe8971'})
+            };
+        </script>
+        <script src="https://cdn.test-simplexcc.com/sdk/v1/js/sdk.js"></script>
+    </head>
+    <body>
+        <div style="width:50%;margin:auto;height:100%">
+            <form id="simplex-form">
+                <div id="checkout-element">
+                </div>
+            </form>
+        </div>
+        <script>
+            const params = {
+                //  Add your payment id here to start the payment process.
+                payment_id: 'ec23ed9e-818e-4a19-842b-b8ded4e9033b',
+                version: '1',
+                //  Your company name in partnership with Simplex
+                partner: 'carbonbase',
+                payment_flow_type: 'wallet',
+                return_url_success: 'https://www.partner.com',
+                return_url_fail: 'https://www.partner.com/support',
+            }
+            Simplex.load(params, function (event) {
+                console.log(event.type) // => 'checkoutLoadSucceeded'
+            });
+            Simplex.subscribe('onlineFlowFinished', function (event) {
+                console.log(e.payload.result) // => "success" or "failure"
+            });
+        </script>
+    </body>
+</html>
